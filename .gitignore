@@ -3,20 +3,8 @@ node_modules/
 jspm_packages/
 seeders
 
-# Optional npm cache directory
-.npm
-
-# Optional eslint cache
-.eslintcache
-
-# Microbundle cache
-.rpt2_cache/
-.rts2_cache_cjs/
-.rts2_cache_es/
-.rts2_cache_umd/
-
-# Optional REPL history
-.node_repl_history
+# logs package json
+package-lock.json
 
 # dotenv environment variables file
 .env
