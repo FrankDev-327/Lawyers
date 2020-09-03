@@ -71,6 +71,7 @@ module.exports = {
                   msg: 'Algo pasó al actualizar su infomación. Pruebe de nuevo.'
                }
             });
+         return res.status(200).json(info);
       } catch (error) {
          console.log(error);
          return res.status(200).json({

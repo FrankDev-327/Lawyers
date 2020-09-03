@@ -3,87 +3,89 @@
 const models = require('../../models');
 
 module.exports = {
-    createPhotoProfileLaweyer: async (req, res) => {
+    createProfileClients: async (req, res) => {
         try {
-            var info = await models.LawyerProfile.create(req.body);
+            var params = req.body;
+            var setCreate = {
+                clientId: params.clientId,
+                clientPhoto: params.clientPhoto
+            }
+            var info = await models.ClientsProfile.create(setCreate);
             if (info !== null) {
                 return res.status(200).json({
                     info,
-                    code: 'LAWYER_PHOTO_200',
+                    code: 'CLIENT_PHOTO_200',
                     msg: 'Sus datos han sido registrados.'
                 });
             }
 
             return res.status(200).json({
-                code: 'LAWYER_PHOTO_403',
-                msg: 'Algo pasó al registrar su infomación. Pruebe de nuevo.'
+                code: 'CLIENT_PHOTO_403',
+                msg: 'Algo pasó al registrar su foto de perfil. Pruebe de nuevo.'
             });
 
         } catch (error) {
             console.log(error);
             return res.status(200).json({
-                code: 'LAWYER_PHOTO_500',
+                code: 'CLIENT_PHOTO_500',
                 error: error.message
             });
         }
     },
-    displayPhotoProfileLawyer: async (req, res) => {
+    displayProfileClients: async (req, res) => {
         try {
-            var lawyerId = req.params.id;
+            var clientId = req.params.id;
             var setWhere = {
-                attributes: {
-                    exclude: ['id']
-                },
                 where: {
-                    lawyerId: lawyerId
+                    clientId: clientId
                 }
             }
-            var info = await models.LawyerProfile.findOne(setWhere);
+            var info = await models.ClientsProfile.findOne(setWhere);
             if (info !== null) {
                 return res.status(200).json({
                     info,
-                    code: 'LAWYER_PHOTO_200',
+                    code: 'CLIENT_PHOTO_200',
                 });
             }
 
             return res.status(200).json({
-                code: 'LAWYER_PHOTO_403',
-                msg: 'Algo pasó al mostrar el perfil.'
+                code: 'CLIENT_PHOTO_403',
+                msg: 'Algo pasó al registrar su foto de perfil. Pruebe de nuevo.'
             });
 
         } catch (error) {
             console.log(error);
             return res.status(200).json({
-                code: 'LAWYER_PHOTO_500',
+                code: 'CLIENT_PHOTO_500',
                 error: error.message
             });
         }
     },
-    updatePhotoProfileLawyer: async (req, res) => {
+    updateProfileClients: async (req, res) => {
         try {
-            var lawyerId = req.params.id;
+            var clientId = req.params.id;
             var setWhere = {
                 plain: true,
                 returning: true,
                 where: {
-                    id: lawyerId
+                    id: clientId
                 }
             }
             var setUpdate = {
-                lawyer_photo: req.body.lawyer_photo
+                clientPhoto: req.body.clientPhoto
             }
-            var info = await models.LawyerProfile.update(setUpdate, setWhere)
+            var info = await models.ClientsProfile.update(setUpdate, setWhere)
                 .then((info) => {
                     return {
                         info: info[1],
-                        code: 'LAWYER_PHOTO_200',
+                        code: 'CLIENT_PHOTO_200',
                         msg: 'Sus foto de perfil han sido actualizado.'
                     }
                 })
                 .catch((error) => {
                     console.log(error)
                     return {
-                        code: 'LAWYER_403',
+                        code: 'CLIENT_PHOTO_403',
                         msg: 'Algo pasó al actualizar su foto de perfil. Pruebe de nuevo.'
                     }
                 });
@@ -91,31 +93,31 @@ module.exports = {
         } catch (error) {
             console.log(error);
             return res.status(200).json({
-                code: 'LAWYER_PHOTO_500',
+                code: 'CLIENT_PHOTO_500',
                 error: error.message
             });
         }
     },
-    listsPhotoProfileLawyer: async (req, res) => {
+    listsPhotoProfileClient: async (req, res) => {
         try {
-            var info = await models.LawyerProfile.findAll({});
+            var info = await models.ClientsProfile.findAll();
 
             if (info !== null && info.length > 0) {
                 return res.status(200).json({
                     info,
-                    code: 'LAWYER_PHOTO_200',
+                    code: 'CLIENT_PHOTO_200',
                 });
             }
 
             return res.status(200).json({
-                code: 'LAWYER_PHOTO_403',
+                code: 'CLIENT_PHOTO_403',
                 msg: 'Algo pasó al mostrar el perfil.'
             });
 
         } catch (error) {
             console.log(error);
             return res.status(200).json({
-                code: 'LAWYER_PHOTO_500',
+                code: 'CLIENT_PHOTO_500',
                 error: error.message
             });
         }

@@ -8,28 +8,19 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
+      nameClient: {
         type: Sequelize.STRING
       },
-      lastname: {
+      lastNameClient: {
         type: Sequelize.STRING
       },
-      identifier: {
+      cellphoneClient: {
         type: Sequelize.STRING
       },
-      cellphone: {
+      emailClient: {
         type: Sequelize.STRING
       },
-      cellphone_2: {
-        type: Sequelize.STRING
-      },
-      email: {
-        type: Sequelize.STRING
-      },
-      email_2: {
-        type: Sequelize.STRING
-      },
-      password: {
+      passwordClient: {
         type: Sequelize.STRING
       },
       createdAt: {

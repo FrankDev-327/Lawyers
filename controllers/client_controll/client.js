@@ -41,13 +41,11 @@ module.exports = {
                 }
             }
             var setUpdate = {
-                name: params.name,
-                lastname: params.lastname,
-                cellphone: params.cellphone,
-                cellphone_2: params.cellphone_2,
-                email: params.email,
-                email_2: params.email_2,
-                password: params.password
+                nameClient: params.nameClient,
+                lastNameClient: params.lastNameClient,
+                cellphoneClient: params.cellphoneClient,
+                emailClient: params.emailClient,
+                passwordClient: params.passwordClient
             }
             var info = await models.Clients.update(setUpdate, setWhere)
                 .then((info) => {
