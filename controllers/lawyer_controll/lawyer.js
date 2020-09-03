@@ -1,6 +1,24 @@
 'use strict';
 
 const models = require('../../models');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
+async function hashPass(pass) {
+   try {
+      return await bcrypt.hash(pass, saltRounds);
+   } catch (error) {
+      console.log(error)
+   }
+}
+
+async function comparePass(lawyer_pass, encrypt_pass) {
+   try {
+      return await bcrypt.compare(lawyer_pass, encrypt_pass)
+   } catch (error) {
+      console.log(error)
+   }
+}
 
 module.exports = {
    lawyerCreateInfo: async (req, res) => {
@@ -12,7 +30,10 @@ module.exports = {
             cellphohe: params.cellphohe,
             identify: params.identify,
             email: params.email,
-            password: params.password,
+            password: await hashPass(params.password),
+            description: params.description,
+            bio: params.bio,
+            resume: params.resume,
             idCategory: parseInt(params.idCategory),
             address: params.address
          }
@@ -48,11 +69,12 @@ module.exports = {
             }
          }
          var setUpdate = {
-            /*name: params.name,
-            lastName: params.lastName,*/
             cellphohe: params.cellphohe,
+            bio: params.bio,
             password: params.password,
             email: params.email,
+            password: await hashPass(params.password),
+            description: params.description,
             idCategory: parseInt(params.idCategory),
             address: params.address
          };
@@ -72,6 +94,7 @@ module.exports = {
                }
             });
          return res.status(200).json(info);
+
       } catch (error) {
          console.log(error);
          return res.status(200).json({
@@ -95,6 +118,45 @@ module.exports = {
             code: 'LAWYER_403',
             msg: 'Algo pasó al mostrar la infomación. Pruebe de nuevo.'
          });
+      } catch (error) {
+         console.log(error);
+         return res.status(200).json({
+            code: 'LAWYER_500',
+            error: error.message
+         });
+      }
+   },
+   lawyerLogin: async (req, res) => {
+      try {
+         var params = req.body;
+         var pass = params.password;
+         var email = params.email;
+         var setWhere = {
+            where: {
+               email: email
+            }
+         }
+
+         var info = await models.Lawyers.findOne(setWhere);
+         if (info !== null) {
+            var _pass = await comparePass(pass, info.password);
+            if (_pass) {
+               return res.status(200).json({
+                  info,
+                  code: 'LAWYER_200',
+                  msg: 'Ha iniciado sesión.'
+               });
+            }
+            return res.status(200).json({
+               code: 'LAWYER_403',
+               msg: 'Contraseña incorrecta.'
+            });
+         }
+         return res.status(200).json({
+            code: 'LAWYER_404',
+            msg: 'El correo no existe.'
+         });
+
       } catch (error) {
          console.log(error);
          return res.status(200).json({

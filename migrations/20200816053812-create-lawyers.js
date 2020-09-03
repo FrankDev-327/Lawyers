@@ -29,6 +29,18 @@ module.exports = {
       password: {
         type: Sequelize.STRING
       },
+      description: {
+        type: Sequelize.STRING
+      },
+      bio: {
+        type: Sequelize.STRING
+      },
+      resume: {
+        type: Sequelize.BLOB
+      },
+      type: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

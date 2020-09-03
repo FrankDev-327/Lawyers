@@ -98,6 +98,7 @@ module.exports = {
             });
         }
     },
+    //para el admin
     listsPhotoProfileClient: async (req, res) => {
         try {
             var info = await models.ClientsProfile.findAll();

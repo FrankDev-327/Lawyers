@@ -15,6 +15,7 @@ app.use(bodyParser.urlencoded({
 const {
    lawyer_route,
    category_route,
+   client_route,
    lawyer_photo_route,
    client_photo_route,
 } = require('./routes/index')
@@ -29,6 +30,7 @@ app.use((req, res, next) => {
    next();
 });
 
+app.use(_PATH_, client_route);
 app.use(_PATH_, lawyer_route);
 app.use(_PATH_, category_route);
 app.use(_PATH_, client_photo_route);
