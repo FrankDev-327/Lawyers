@@ -5,7 +5,11 @@ const models = require('../../models');
 module.exports = {
     createPhotoProfileLaweyer: async (req, res) => {
         try {
-            var info = await models.LawyerProfile.create(req.body);
+            var setCreate = {
+                lawyerId: req.lawyer.id,
+                lawyer_photo: req.body.lawyer_photo
+            }
+            var info = await models.LawyerProfile.create(setCreate);
             if (info !== null) {
                 return res.status(200).json({
                     info,
@@ -29,7 +33,7 @@ module.exports = {
     },
     displayPhotoProfileLawyer: async (req, res) => {
         try {
-            var lawyerId = req.params.id;
+            var lawyerId = req.lawyer.id;
             var setWhere = {
                 attributes: {
                     exclude: ['id']
@@ -61,12 +65,12 @@ module.exports = {
     },
     updatePhotoProfileLawyer: async (req, res) => {
         try {
-            var lawyerId = req.params.id;
+            var lawyerId = req.lawyer.id;
             var setWhere = {
                 plain: true,
                 returning: true,
                 where: {
-                    id: lawyerId
+                    lawyerId: lawyerId
                 }
             }
             var setUpdate = {
@@ -95,7 +99,7 @@ module.exports = {
                 error: error.message
             });
         }
-    },
+    },//to use by admin
     listsPhotoProfileLawyer: async (req, res) => {
         try {
             var info = await models.LawyerProfile.findAll({});

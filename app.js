@@ -1,15 +1,16 @@
 'use strict';
 
-require('dotenv').config();
 var express = require('express');
+//const passport = require('passport')
 var bodyParser = require('body-parser');
+const setting = require('./config/setting');
 const {
    graphqlHTTP
 } = require('express-graphql');
 const schema = require('./Queries/lawyers_queries');
 const _PATH_ = '/api_lawyer';
 var app = express();
-app.set('port', process.env.PORT);
+app.set('port', setting.PORT);
 
 app.disable('x-powered-by');
 app.use(bodyParser.urlencoded({
@@ -57,7 +58,7 @@ app.listen(app.get('port'), function () {
 });
 
 process.on('uncaughtException', err => {
-   console.error(err, 'Uncaught Exception thrown in API GATEWAY.');
+   console.error(err, 'Uncaught Exception thrown in API LAWYER.');
 }).on('unhandledRejection', (reason, p) => {
-   console.error(reason, 'Unhandled Rejection at Promise in API GATEWAY.', p);
+   console.error(reason, 'Unhandled Rejection at Promise in API LAWYER.', p);
 });

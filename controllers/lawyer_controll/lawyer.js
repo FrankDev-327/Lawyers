@@ -3,6 +3,7 @@
 const models = require('../../models');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+const { encoderLawyer } = require('../../middlewares/index')
 
 async function hashPass(pass) {
    try {
@@ -168,10 +169,12 @@ module.exports = {
 
          var info = await models.Lawyers.findOne(setWhere);
          if (info !== null) {
-            var _pass = await comparePass(pass, info.password);
-            if (_pass) {
+            var dataLawyer = await comparePass(pass, info.password);
+            if (dataLawyer) {
+               let token = await encoderLawyer.endocerFunc(dataLawyer);
                return res.status(200).json({
-                  info,
+                  token:token,
+                  info:dataLawyer,
                   code: 'LAWYER_200',
                   msg: 'Ha iniciado sesión.'
                });
