@@ -103,6 +103,35 @@ module.exports = {
          });
       }
    },
+   lawyerInfoView: async (req, res) => {
+      try {
+         var _id = req.params.id;
+         var setWhere = {
+            where: {
+               id: _id
+            }
+         }
+         var info = await models.Lawyers.findOne(setWhere);
+         if (info !== null) {
+            return res.status(200).json({
+               info,
+               code: 'LAWYER_200',
+               msg: 'Información personal.'
+            });
+         }
+
+         return res.status(200).json({
+            code: 'LAWYER_403',
+            msg: 'Algo pasó al mostrar su infomación. Pruebe de nuevo.'
+         });
+      } catch (error) {
+         console.log(error);
+         return res.status(200).json({
+            code: 'LAWYER_500',
+            error: error.message
+         });
+      }
+   },
    lawyerInfoList: async (req, res) => {
       try {
          var info = await models.Lawyers.findAll();

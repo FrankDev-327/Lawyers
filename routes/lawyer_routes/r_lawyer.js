@@ -8,5 +8,6 @@ route.post('/lawyer-create/', LawyerControll.lawyerCreateInfo);
 route.post('/lawyer-login/', LawyerControll.lawyerLogin);
 route.put('/lawyer-update/:id', LawyerControll.lawyerUpdateInfo);
 route.get('/lawyer-list/', LawyerControll.lawyerInfoList);
+route.get('/lawyer-view/:id', LawyerControll.lawyerInfoView);
 
 module.exports = route;
