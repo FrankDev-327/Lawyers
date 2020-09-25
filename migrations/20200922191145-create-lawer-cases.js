@@ -32,6 +32,9 @@ module.exports = {
       email: {
         type: Sequelize.STRING
       },
+      statusCase: {
+        type: Sequelize.BOOLEN
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     emailClient: DataTypes.STRING,
     passwordClient: DataTypes.STRING,
     type:DataTypes.STRING,
+    identiferClient:DataTypes.STRING,
   }, {});
   Clients.associate = function(models) {
     // associations can be defined here

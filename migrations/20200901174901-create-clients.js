@@ -23,6 +23,9 @@ module.exports = {
       passwordClient: {
         type: Sequelize.STRING
       },
+      identiferClient:{
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

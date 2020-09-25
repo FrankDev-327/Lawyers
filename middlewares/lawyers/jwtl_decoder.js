@@ -11,7 +11,7 @@ exports.authLawyer = async (req, res, next) => {
         });
     try {
         var token = req.headers.authorization.replace(/['"]+/g, '');
-        pl = jwt.decode(token, setting.SECRET_KEY);
+        pl = jwt.decode(token, setting.SECRET_KEY_LAWYER);
         if (pl.exp <= moment().unix) {
             return res.status(403).json({
                 message: 'El token ha expirado'
