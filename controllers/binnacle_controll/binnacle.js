@@ -48,7 +48,7 @@ module.exports = {
             }
             return res.status(200).json({
                 code: 'BNL_CASE_404',
-                msg: 'Error al mostrar el seguimiento del caso.'
+                msg: 'Error al mostrar los comentarios del caso.'
             });
         } catch (error) {
             console.log(error);

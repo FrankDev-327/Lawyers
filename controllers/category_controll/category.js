@@ -2,6 +2,7 @@
 
 const models = require('../../models');
 
+//for the admin
 async function categoryCreate(req, res) {
     try {
         var info = await models.Categories.create(req.body);
@@ -22,6 +23,7 @@ async function categoryCreate(req, res) {
     }
 }
 
+//for the lawyers and clients 
 async function categoryLists(req, res) {
     try {
         var info = await models.Categories.findAll();

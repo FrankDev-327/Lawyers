@@ -17,7 +17,7 @@ module.exports = {
       speciality: {
         type: Sequelize.STRING
       },
-      matters: {
+      subjects: {
         type: Sequelize.STRING
       },
       lawyerId:{

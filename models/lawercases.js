@@ -9,7 +9,8 @@ module.exports = (sequelize, DataTypes) => {
     cellphone: DataTypes.STRING,
     statusCase: DataTypes.BOOLEAN,
     matters: DataTypes.STRING,
-    stage: DataTypes.INTEGER
+    stage: DataTypes.INTEGER,
+    stagesName: DataTypes.STRING
   }, {});
   LawerCases.associate = function(models) {
     // associations can be defined here

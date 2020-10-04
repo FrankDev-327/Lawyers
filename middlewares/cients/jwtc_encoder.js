@@ -4,7 +4,7 @@ const setting = require('../../config/setting');
 const jwt = require('jwt-simple');
 const moment = require('moment');
 
-exports.endocerFunc = async (objClient) => {
+exports.clientToken = async (objClient) => {
     var pl = {
         id:objClient.id,
         nameClient: objClient.nameClient,

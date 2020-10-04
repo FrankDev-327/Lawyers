@@ -4,9 +4,9 @@ const setting = require('../../config/setting');
 const jwt = require('jwt-simple');
 const moment = require('moment');
 
-exports.endocerFunc = async (objLawyer) => {
+exports.lawyerToken = async (objLawyer) => {
     const pl = {
-        id:objLawyer.id,
+        id: objLawyer.id,
         name: objLawyer.name,
         lastName: objLawyer.STRING,
         cellphohe: objLawyer.lastName,

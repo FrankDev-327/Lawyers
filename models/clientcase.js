@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     speciality: DataTypes.STRING,
     email: DataTypes.STRING,
     cellphone: DataTypes.STRING,
-    matters: DataTypes.STRING,
+    subjects: DataTypes.STRING,
     status: DataTypes.BOOLEAN
   }, {});
   ClientCase.associate = function(models) {

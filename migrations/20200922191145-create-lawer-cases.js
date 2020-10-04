@@ -23,6 +23,9 @@ module.exports = {
       stage: {
         type: Sequelize.INTEGER
       },
+      stagesName:{
+        type: Sequelize.STRING
+      },
       lawyerId: {
         type: Sequelize.INTEGER
       },

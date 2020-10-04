@@ -3,8 +3,8 @@
 const models = require('../../models');
 
 module.exports = {
-   //solo para el cliente.
-   createMattersCases: async (req, res) => {
+   //only to the clients.
+   createSubjectsCases: async (req, res) => {
       try {
          var idClient = req.objUsr.identiferClient;
          var params = req.body;
@@ -15,7 +15,7 @@ module.exports = {
             cellphone:params.cellphone,
             speciality: params.speciality,
             lawyerId: params.lawyerId,
-            matters: params.matters,
+            subjects: params.subjects,
             status: true
          }
          var info = await models.ClientCase.create(setCreate);
@@ -39,7 +39,8 @@ module.exports = {
             error: error.message
          });
       }
-   },//tocado por el abogado
+   },
+   //this method will be used for the lawyer.
    statusChangeCases: async (req, res) => {
       try {
          var params = req.body;
@@ -76,10 +77,11 @@ module.exports = {
    },
    rejectOrAcceptListsCases: async (req, res) => {
       try {
-         //valor que debe ser tomado del payload
+         //value that must be taken from the payload.
          var idClient = req.objUsr.identiferClient;
          var setWhere = {
             where: {
+               status: false,
                identiferClient: idClient
             }
          }

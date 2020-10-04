@@ -171,7 +171,7 @@ module.exports = {
          if (info !== null) {
             var dataLawyer = await comparePass(pass, info.password);
             if (dataLawyer) {
-               let token = await encoderLawyer.endocerFunc(dataLawyer);
+               let token = await encoderLawyer.lawyerToken(dataLawyer);
                return res.status(200).json({
                   token:token,
                   info:dataLawyer,

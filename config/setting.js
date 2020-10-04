@@ -8,5 +8,6 @@ module.exports = {
     DIALECT:process.env.DIALECT,
     SECRET_KEY_LAWYER:process.env.SECRET_KEY_LAWYER,
     SECRET_KEY_CLIENT:process.env.SECRET_KEY_CLIENT,
-    PORT: process.env.PORT
+    PORT: process.env.PORT,
+    PATH: process.env.PATH
 }

@@ -5,5 +5,6 @@ module.exports = {
     client_photo_route: require('./client_photo_routes/r_client_photo'),
     client_route: require('./client_routes/r_client'),
     client_case_route: require('./client_case_route/r_client_case'),
+    binnacle_route: require('./binnacle_route/r_binnacle'),
     
 }

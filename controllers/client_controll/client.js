@@ -2,7 +2,9 @@
 
 const models = require('../../models');
 const bcrypt = require('bcrypt');
-const { encoderClient } = require('../../middlewares/index');
+const {
+   encoderClient
+} = require('../../middlewares/index');
 const saltRounds = 10;
 
 async function hashPass(pass) {
@@ -27,7 +29,7 @@ module.exports = {
          var params = req.body;
          var setCreate = {
             nameClient: params.nameClient,
-            type: params.type,
+            type: params.type, //it's will be to identify client or lawyer
             lastNameClient: params.lastNameClient,
             cellphoneClient: params.cellphoneClient,
             emailClient: params.emailClient,
@@ -113,10 +115,10 @@ module.exports = {
          if (info !== null) {
             var dataClient = await comparePass(pass, info.passwordClient);
             if (dataClient) {
-               var token = await encoderClient.endocerFunc(dataClient)
+               var token = await encoderClient.clientToken(dataClient)
                return res.status(200).json({
                   info,
-                  token:token,
+                  token: token,
                   code: 'CLIENT_200',
                   msg: 'Ha iniciado sesión.'
                });

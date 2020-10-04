@@ -8,7 +8,7 @@ const {
    graphqlHTTP
 } = require('express-graphql');
 const schema = require('./Queries/lawyers_queries');
-const _PATH_ = '/api_lawyer';
+const _PATH_ = setting.PATH;
 var app = express();
 app.set('port', setting.PORT);
 
@@ -31,6 +31,7 @@ const {
    lawyer_route,
    category_route,
    client_route,
+   binnacle_route,
    lawyer_photo_route,
    client_photo_route,
    client_case_route,
@@ -46,6 +47,7 @@ app.use((req, res, next) => {
    next();
 });
 
+app.use(_PATH_, binnacle_route);
 app.use(_PATH_, client_route);
 app.use(_PATH_, client_case_route);
 app.use(_PATH_, lawyer_route);
